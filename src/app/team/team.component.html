@@ -1,0 +1,20 @@
+
+<table class="table table-hover" style="width: 500px">
+    <tbody>
+        <tr *ngFor="let match of matches">
+            <td>
+                <img [src]="match.teams.home.logo" alt="Logo {{  match.teams.home.name  }}">
+            </td>
+            <td>{{ match.teams.home.name }}</td>
+            <td>{{ match.goals.home }}</td>
+            <td>-</td>
+            <td>{{ match.goals.away }}</td>
+            <td>{{ match.teams.away.name }}</td>
+            <td>
+                <img [src]="match.teams.away.logo" alt="Logo {{  match.teams.away.name  }}">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="btn btn-primary" (click)="onBack()">Back</button>

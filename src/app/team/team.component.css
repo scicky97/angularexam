@@ -1,0 +1,8 @@
+td {
+    text-align: center;
+}
+
+td img {
+    max-width: 2em;
+    max-height: 2em;
+}

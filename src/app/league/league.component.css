@@ -1,0 +1,17 @@
+
+.navbar-nav .nav-link {
+    cursor: pointer;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: 700;
+}
+
+tr {
+    cursor: pointer;
+}
+
+td img {
+    max-width: 2em;
+    max-height: 2em;
+}
