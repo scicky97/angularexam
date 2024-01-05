@@ -1,17 +1,17 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LeagueComponent } from './league/league.component';
+import { LeaguesComponent } from './leagues/leagues.component';
+import { AuthCacheInterceptor } from './shared/auth-cache-interceptor';
 import { TeamComponent } from './team/team.component';
-import { GeneralInterceptor } from './shared/general-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LeagueComponent,
+    LeaguesComponent,
     TeamComponent
   ],
   imports: [
@@ -20,7 +20,7 @@ import { GeneralInterceptor } from './shared/general-interceptor';
     HttpClientModule 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: GeneralInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthCacheInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -6,10 +6,10 @@ import { environment } from "../../environments/environment";
 // 1. adds authentication headers to the requests
 // 2. implements the caching mechanism
 @Injectable()
-export class GeneralInterceptor implements HttpInterceptor {
+export class AuthCacheInterceptor implements HttpInterceptor {
 
   // store all the received http responses based on the complete url
-  private cache = new Map<string, HttpResponse<any>>();
+  cache = new Map<string, HttpResponse<any>>();
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const cachedResponse = this.cache.get(req.urlWithParams);

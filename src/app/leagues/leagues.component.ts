@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { LeagueService } from './league.service';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Standing } from '../shared/standing.model';
+import { Standing } from '../shared/model/standing.model';
+import { LeagueService } from './leagues.service';
 
 @Component({
-  selector: 'app-league',
-  templateUrl: './league.component.html',
-  styleUrl: './league.component.css'
+  selector: 'app-leagues',
+  templateUrl: './leagues.component.html',
+  styleUrl: './leagues.component.css'
 })
-export class LeagueComponent implements OnInit {
+export class LeaguesComponent {
 
   countries = [
     {id: 39, name: 'England'},
@@ -21,10 +21,6 @@ export class LeagueComponent implements OnInit {
   constructor(
     private router: Router,
     private leagueService: LeagueService) {}
-
-  ngOnInit(): void {
-    //this.standings = this.leagueService.retrieveStandings();
-  }
 
   public onSelectCountry(leagueId: number): void {
     this.leagueService.retrieveStandingsById(leagueId);

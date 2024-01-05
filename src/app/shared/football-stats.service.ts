@@ -1,18 +1,19 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { StandingsResponse } from './standings-response.model';
-import { FixturesResponse } from './fixtures-response.model';
 import { environment } from '../../environments/environment';
+import { FixturesResponse } from './model/fixtures-response.model';
+import { StandingsResponse } from './model/standings-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FootballStatsService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
+  // returns the last fixtures for a specific team
   public getFixtures(teamId: number, last: number): Observable<FixturesResponse> {
     const queryParams = new HttpParams()
       .append('team', teamId)
@@ -26,6 +27,7 @@ export class FootballStatsService {
     );
   }
 
+  // returns the standings for a specific leangue and season
   public getStandings(leagueId: number, season: string): Observable<StandingsResponse> {
     const queryParams = new HttpParams()
       .append('league', leagueId)

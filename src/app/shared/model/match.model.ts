@@ -1,5 +1,4 @@
 import { Fixture } from "./fixture.model";
-import { GenericResponse } from "./generic-response.model";
 import { League } from "./league.model";
 import { Team } from "./team.model";
 
@@ -22,8 +21,4 @@ export interface Match {
         extratime: GoalResult,
         penalty: GoalResult
     };
-}
-
-export interface FixturesResponse extends GenericResponse {
-    response: Match[];
 }

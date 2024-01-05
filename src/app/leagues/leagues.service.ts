@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Standing } from '../shared/standing.model';
+import { Standing } from '../shared/model/standing.model';
 import { FootballStatsService } from '../shared/football-stats.service';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { FootballStatsService } from '../shared/football-stats.service';
 export class LeagueService {
 
   leagueId?: number;
-  standings?: Standing[] = [];
+  standings: Standing[] = [];
 
   constructor(private footballStatsService: FootballStatsService) {}
 
@@ -18,18 +18,17 @@ export class LeagueService {
   }
 
   // sets the new leagueId and returns all the standings related to the league
-  public retrieveStandingsById(leagueId: number): Standing[] {
+  public retrieveStandingsById(leagueId: number): void {
     this.leagueId = leagueId;
     const currentYear = (new Date()).getFullYear() - 1;
 
     this.footballStatsService.getStandings(leagueId, currentYear.toString()).subscribe({
       next: data => {
-        this.standings = data.response[0].league?.standings?.[0];
+        this.standings = data.response[0].league.standings![0];
       },
       error: error => {
         console.error(error);
       }
     });
-    return this.getStandings();
   }
 }

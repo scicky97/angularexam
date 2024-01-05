@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Match } from '../shared/fixtures-response.model';
 import { FootballStatsService } from '../shared/football-stats.service';
+import { Match } from '../shared/model/match.model';
 
 @Component({
   selector: 'app-team',
@@ -12,7 +12,6 @@ export class TeamComponent implements OnInit {
 
   static readonly NUMBER_OF_MATCHES = 10;
 
-  teamId?: number;
   matches: Match[] = [];
 
   constructor(
@@ -22,9 +21,10 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {
     // get the teamId from the query param
-    this.teamId = +this.activatedRoute.snapshot.params['id'];
+    let teamId = +this.activatedRoute.snapshot.params['id'];
 
-    this.footballStatsService.getFixtures(this.teamId, TeamComponent.NUMBER_OF_MATCHES).subscribe({
+    // init list of matches
+    this.footballStatsService.getFixtures(teamId, TeamComponent.NUMBER_OF_MATCHES).subscribe({
       next: data => {
         this.matches = data.response;
       },
